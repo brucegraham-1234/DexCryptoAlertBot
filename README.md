@@ -1,9 +1,20 @@
-# Solana Alert Bot v2.1 (DexScreener → Telegram)
-Uses DexScreener's documented endpoints:
-- GET /token-profiles/latest/v1 → latest token profiles (filter to chainId=solana)
-- GET /token-pairs/v1/{chainId}/{tokenAddress} → pools/pairs of a token
+# Solana Alert Bot (DexScreener → Telegram) — v2
 
-Steps:
-1) Replace main.py in your repo with this version (or upload this whole package).
-2) Deploy new revision in Cloud Run (env vars unchanged).
-3) 404 polling errors should be gone.
+Filters supported:
+- Solana only (via endpoint)
+- All DEXes (via endpoint)
+- **Profile required** (heuristic: DexScreener `info` present)
+- **Minimum 24h Volume**
+- **Maximum Pair Age (minutes)**
+- **Maximum Market Cap (uses `marketCap` or `fdv`)**
+
+## Env Vars (copy/paste example below)
+- `TELEGRAM_BOT_TOKEN` (required)
+- `TELEGRAM_CHAT_ID` (required)
+- `MIN_LIQUIDITY` (default `0`)
+- `MIN_VOLUME24H` (default `10000`)
+- `MAX_AGE_MINUTES` (default `60`)
+- `MAX_MARKET_CAP` (default `1000000`)
+- `PROFILE_REQUIRED` (default `true`)
+- `CHECK_INTERVAL_SECONDS` (default `30`)
+

@@ -1,1 +1,2 @@
-Update requirements.txt with Flask and requests
+requests
+flask
